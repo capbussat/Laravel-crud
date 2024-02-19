@@ -50,12 +50,12 @@
                 </tbody>
             </table>
 
-            <div class="">    
-              Posts: {{ $count ?? 0 }}
-            <form name="post-create" id="post-create" method="GET" action="{{ route('posts.create') }}">
-                @csrf
-                <button type="submit" class="btn btn-sm btn-primary"">Crea un post</button>
-            </form>
+            <div class="">
+                Posts: {{ $count ?? 0 }}
+                <form name="post-create" id="post-create" method="GET" action="{{ route('posts.create') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-primary"">Crea un post</button>
+                </form>
             </div>
 
         </div>
