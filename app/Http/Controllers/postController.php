@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Post; /* required to get data of post eloquent model */
+use App\Models\Comment;
+
 
 class postController extends Controller
 {
@@ -55,7 +57,8 @@ class postController extends Controller
     public function show(string $id)
     {
         $post = Post::where( 'id' , $id )->first();
-        return view('posts.show')->with( compact( 'post' ) );
+        $comments = Comment::where('post_id', $id)->get();
+        return view('posts.show')->with( compact( 'post', 'comments' ) );
     }
 
     /**

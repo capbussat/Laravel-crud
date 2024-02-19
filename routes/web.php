@@ -19,9 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('inici');
 
-Route::get('/bloc', function () {
-    return view('bloc');
-})->name('bloc');
 
 Route::get('/nosaltres', function () {
     return view('nosaltres');
@@ -35,6 +32,7 @@ Route::view('/test','test');
 
 // segueix totes les convencions
 Route::resource('posts', postController::class);
+
 
 // si vols substituir el 404
 /* Route::fallback( function () {
