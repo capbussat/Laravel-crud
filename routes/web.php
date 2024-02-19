@@ -19,10 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('inici');
 
-Route::get('/bloc', function () {
-    return view('bloc');
-})->name('bloc');
-
 Route::get('/nosaltres', function () {
     return view('nosaltres');
 })->name('nosaltres');
@@ -31,7 +27,7 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
-Route::view('/test','test');
+Route::view('/test','test'); // una vista per fer proves
 
 // segueix totes les convencions
 Route::resource('posts', postController::class);
