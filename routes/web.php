@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\commentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,9 @@ use App\Http\Controllers\postController;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('inici');
-
 
 Route::get('/nosaltres', function () {
     return view('nosaltres');
@@ -33,6 +32,8 @@ Route::view('/test','test');
 // segueix totes les convencions
 Route::resource('posts', postController::class);
 
+Route::post('/posts/{post}/comments', [CommentController::class,'store'] )->name('posts.comments.store');
+Route::delete('/posts/{post}/comments', [CommentController::class,'destroy'] )->name('posts.comments.destroy');
 
 // si vols substituir el 404
 /* Route::fallback( function () {

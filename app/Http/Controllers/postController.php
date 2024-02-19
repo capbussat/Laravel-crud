@@ -24,7 +24,7 @@ class postController extends Controller
         
         // si hi ha una cerca per títol només recupera la cerca
         if ( request()->has('search') ){
-            $posts = Post::where('summary', 'like', '%' . request()->search . '%' )->get();
+            $posts = Post::where('summary', 'like', '%' . request('search') . '%' )->get();
         } else {
             // o llegeix totes les dades
             $posts = Post::all();
@@ -68,7 +68,7 @@ class postController extends Controller
     public function show(string $id)
     {
         $post = Post::where( 'id' , $id )->first();
-        $comments = Comment::where('post_id', $id)->get();
+        $comments = Comment::where('post_id', $id)->get(); // forma simple
         return view('posts.show')->with( compact( 'post', 'comments' ) );
     }
 

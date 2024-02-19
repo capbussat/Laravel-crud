@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->timestamps();
             // foreignId és més curt que $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreignId('post_id')->constrained();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
         });
     }
 
