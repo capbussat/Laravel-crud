@@ -1,5 +1,11 @@
 <x-page>
     <div class="container">
+        @isset($status)
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ $status ?? '' }}
+            </div>
+        @endisset
         <div class="table-responsive">
             <table class="table table-light table-hover">
                 <thead>
@@ -14,48 +20,51 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
-                        <tr class="">
-                            <td scope="row">{{ $post->id }}</td>
-                            <td>{{ $post->status }}</td>
-                            <td>{{ $post->type }}</td>
-                            <td>{{ $post->summary }}</td>
+                    @if (isset($posts))
+                        @foreach ($posts as $post)
+                            <tr class="">
+                                <td scope="row">{{ $post->id }}</td>
+                                <td>{{ $post->status }}</td>
+                                <td>{{ $post->type }}</td>
+                                <td>{{ $post->summary }}</td>
 
-                            <td>
-                                <form name="post-show-{{ $post->id }}" id="post-show-{{ $post->id }}"
-                                    method="GET" action="{{ route('posts.show', $post->id) }}">
+                                <td>
+                                    <form name="post-show-{{ $post->id }}" id="post-show-{{ $post->id }}"
+                                        method="GET" action="{{ route('posts.show', $post->id) }}">
 
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-primary">Mostra</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form name="post-edit-{{ $post->id }}" id="post-edit-{{ $post->id }}"
-                                    method="GET" action="{{ route('posts.edit', $post->id) }}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-primary">Mostra</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form name="post-edit-{{ $post->id }}" id="post-edit-{{ $post->id }}"
+                                        method="GET" action="{{ route('posts.edit', $post->id) }}">
 
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-primary">Edita</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form name="post-destroy-{{ $post->id }}" id="post-destroy-{{ $post->id }}"
-                                    method="POST" action="{{ route('posts.destroy', $post->id) }}">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Esborra</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-primary">Edita</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form name="post-destroy-{{ $post->id }}"
+                                        id="post-destroy-{{ $post->id }}" method="POST"
+                                        action="{{ route('posts.destroy', $post->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger">Esborra</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
 
-            <div class="">    
-              Posts: {{ $count ?? 0 }}
-            <form name="post-create" id="post-create" method="GET" action="{{ route('posts.create') }}">
-                @csrf
-                <button type="submit" class="btn btn-sm btn-primary"">Crea un post</button>
-            </form>
+            <div class="">
+                Posts: {{ $count ?? 0 }}
+                <form name="post-create" id="post-create" method="GET" action="{{ route('posts.create') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-primary"">Crea un post</button>
+                </form>
             </div>
 
         </div>

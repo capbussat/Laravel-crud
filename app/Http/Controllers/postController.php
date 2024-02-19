@@ -21,12 +21,23 @@ class postController extends Controller
      */
     public function index()
     {
-        // llegir les dades
-        $posts = post::all();
-        $count = count( $posts);
+        
+        // si hi ha una cerca per títol només recupera la cerca
+        if ( request()->has('search') ){
+            $posts = Post::where('summary', 'like', '%' . request()->search . '%' )->get();
+        } else {
+            // o llegeix totes les dades
+            $posts = Post::all();
+        }
 
-        // load the view and pass the posts
-        return View('posts.index')->with('posts', $posts)->with('count', $count);
+        // passa un missatge si el resultat és buit
+        $count = count( $posts);
+        if ( $count === 0 ) {
+            return view('posts.index')->with('status', 'No hi ha dades');
+        }
+
+        // passa el resultat
+        return view('posts.index')->with('posts', $posts)->with('count', $count);
     }
 
     /**
@@ -46,7 +57,7 @@ class postController extends Controller
         $post->summary = $request->summary;
         $post->type = $request->type;
         $post->status = $request->status;
-         $post->content = $request->content;
+        $post->content = $request->content;
         $post->save();
         return redirect()->route('posts.create')->with('status', $post->summary);
     }
