@@ -9,12 +9,19 @@ use Illuminate\View\Component;
 /* this is the class matches the component <x-input /> */
 class input extends Component
 {
+
+    public $placeholder;
+    public $value;
+    public $label;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($placeholder ='Escriu aqui', $value='', $label='Etiqueta')
     {
-        //
+        $this->placeholder = $placeholder;
+        $this->value = $value;
+        $this->label = $label;
     }
 
     /**

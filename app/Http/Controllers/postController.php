@@ -21,7 +21,6 @@ class postController extends Controller
      */
     public function index()
     {
-        
         // si hi ha una cerca per títol només recupera la cerca
         if ( request()->has('search') ){
             $posts = Post::where('summary', 'like', '%' . request('search') . '%' )->get();
@@ -53,11 +52,17 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
+        /* validació de camps */
+        $validated = $request->validate([
+        'summary' => 'required|max:255',
+        'content' => 'required',
+        ]);
+        
         $post = new Post;
-        $post->summary = $request->summary;
+        $post->summary = $validated['summary'];
+        $post->content = $validated['content'];
         $post->type = $request->type;
         $post->status = $request->status;
-        $post->content = $request->content;
         $post->save();
         return redirect()->route('posts.create')->with('status', $post->summary);
     }
@@ -68,7 +73,7 @@ class postController extends Controller
     public function show(string $id)
     {
         $post = Post::where( 'id' , $id )->first();
-        $comments = Comment::where('post_id', $id)->get(); // forma simple
+        $comments = Post::find( $id )->comments; 
         return view('posts.show')->with( compact( 'post', 'comments' ) );
     }
 

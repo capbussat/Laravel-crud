@@ -1,3 +1,4 @@
 <div class="mt-4">
-   <input class="px-1 py-1" type="text" placeholder="Entrada aqui" width="120px">
+   <label class="form-check-label">{{ $label }}</label>
+   <input class="px-1 py-1"  type="text" :value="$value" :placeholder="$placeholder" width="120px">
 </div>

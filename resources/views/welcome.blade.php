@@ -8,9 +8,7 @@
         </div>
     </x-slot>
    {{-- $slot --}}
-
     
       <x-hero></x-hero>
  
-
 </x-page>

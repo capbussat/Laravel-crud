@@ -15,6 +15,7 @@ use App\Http\Controllers\commentController;
 |
 */
 
+/* Una ruta per cada vista */
 Route::get('/', function () {
     return view('welcome');
 })->name('inici');
@@ -27,15 +28,10 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
-Route::view('/test','test');
 
-// segueix totes les convencions
+// Posts
 Route::resource('posts', postController::class);
 
+// Comments
 Route::post('/posts/{post}/comments', [CommentController::class,'store'] )->name('posts.comments.store');
 Route::delete('/posts/{post}/comments', [CommentController::class,'destroy'] )->name('posts.comments.destroy');
-
-// si vols substituir el 404
-/* Route::fallback( function () {
-    redirect('inici');
-}); */
