@@ -15,8 +15,8 @@
                 <form name="post-create" id="post-create" method="POST" action="{{ route('posts.store') }}">
                    @csrf
                     <div class="form-group">
-                        <label for="summary">Summary</label>
-                        <input type="text" id="summary" name="summary" class="form-control" required="" value="{{  $post->summary  ?? ''  }}">
+                        <label for="title">title</label>
+                        <input type="text" id="title" name="title" class="form-control" required="" value="{{  $post->title  ?? ''  }}">
                     </div>
                     <div class="form-group">
                         

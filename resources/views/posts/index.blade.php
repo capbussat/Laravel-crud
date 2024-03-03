@@ -26,7 +26,7 @@
                                 <td scope="row">{{ $post->id }}</td>
                                 <td>{{ $post->status }}</td>
                                 <td>{{ $post->type }}</td>
-                                <td>{{ $post->summary }}</td>
+                                <td>{{ $post->title }}</td>
 
                                 <td>
                                     <form name="post-show-{{ $post->id }}" id="post-show-{{ $post->id }}"

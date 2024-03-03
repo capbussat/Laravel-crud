@@ -23,7 +23,7 @@ class postController extends Controller
     {
         // si hi ha una cerca per títol només recupera la cerca
         if ( request()->has('search') ){
-            $posts = Post::where('summary', 'like', '%' . request('search') . '%' )->get();
+            $posts = Post::where('title', 'like', '%' . request('search') . '%' )->get();
         } else {
             // o llegeix totes les dades
             $posts = Post::all();
@@ -54,17 +54,17 @@ class postController extends Controller
     {
         /* validació de camps */
         $validated = $request->validate([
-        'summary' => 'required|max:255',
+        'title' => 'required|max:255',
         'content' => 'required',
         ]);
         
         $post = new Post;
-        $post->summary = $validated['summary'];
+        $post->title = $validated['title'];
         $post->content = $validated['content'];
         $post->type = $request->type;
         $post->status = $request->status;
         $post->save();
-        return redirect()->route('posts.create')->with('status', $post->summary);
+        return redirect()->route('posts.create')->with('status', $post->title);
     }
 
     /**
@@ -92,7 +92,7 @@ class postController extends Controller
     public function update(Request $request, string $id)
     {
         $post = Post::where( 'id' , $id )->first();
-        $post->summary = $request->summary;
+        $post->title = $request->title;
         $post->type = $request->type;
         $post->status = $request->status;
         $post->content = $request->content;

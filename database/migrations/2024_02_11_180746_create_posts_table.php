@@ -17,7 +17,7 @@ return new class extends Migration
              $table->id();
              $table->string('type')->default('post');
              $table->string('status')->default('draft');
-             $table->text('summary');
+             $table->text('title');
              $table->longText('content');
              $table->timestamps();
          });

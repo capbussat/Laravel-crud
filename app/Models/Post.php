@@ -11,10 +11,10 @@ class Post extends Model
     use HasFactory;
 
     protected $attributes = [
-        'summary' => 'Summary placeholder',
+        'title' => 'Escriu un títol',
         'type' => 'post',
         'status' => 'draft',
-        'content'=> 'Content placeholder',
+        'content'=> 'Escriu el contingut.',
     ];
 
     public function comments(): HasMany

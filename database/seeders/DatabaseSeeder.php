@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Post as Post;
+use App\Models\Comment as Comment;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +20,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $status_sequence = new sequence(
+            ['status' => 'draft'],
+            ['status' => 'publish'],
+        );
+
+        Post::factory(10)->state( $status_sequence)->create();
+        Comment::factory(5)->create();
+        
     }
 }
