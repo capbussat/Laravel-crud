@@ -7,11 +7,12 @@
     <h2>Crea un post</h2>
     <form action="{{ route('posts.store') }}" method="post">
         @csrf
-        <div class="mb-3">
-            <div>
-                <label for="title">Títol</label>
-                <input type="text" name="title" placeholder="Entra el títol">
+        <div class="form-group">            
+            <div class="mb-3">
+                    <label for="title">Títol</label>
+                    <input type="text" name="title" class="form-control" required="" value="{{  $post->title  ?? ''  }}" placeholder="Entra el títol">
             </div>
+        </div>
         <div class="form-group">    
             <div class="mb-3">
                 <label for="status">Status</label>
@@ -45,7 +46,7 @@
                      </div>
             {{-- Contingut --}}
          <div class="form-group">
-            <textarea class="tinyMce" name="content" id="tinyTextArea"></textarea>
+            <textarea class="tinyMce" name="content" id="tinyTextArea">{{  $post->content ?? '' }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
