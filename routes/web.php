@@ -28,6 +28,9 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
+Route::get('/tinymce', function () {
+    return view('tinymce');
+})->name('tinymce');
 
 // Posts
 Route::resource('posts', postController::class);
