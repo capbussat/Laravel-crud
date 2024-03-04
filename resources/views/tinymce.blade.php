@@ -1,23 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Laracoding.com TinyMCE Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    @vite(['resources/js/app.js'])
-    {{-- Això no hauria de ser així però ... --}} 
-    {{-- <script src="/resources/js/tinymce/tinymce.js"></script>  --}}
-
-</script>
-</head>
-<body>
-    <h2>Laracoding.com - TinyMCE Example</h2>
-    <form action="" method="get">
+<x-page>
+     @if (session('status'))
+            <div class="alert alert-success">
+               <span class=""> Creat: </span>'{{ session('status') }}'
+            </div>
+        @endif
+    <h2>Crea un post</h2>
+    <form action="{{ route('posts.store') }}" method="post">
+        @csrf
         <div class="mb-3">
-            <label for="pwd">TinyMCE input:</label>
-            <textarea class="tinyMce" name="tinyTextArea" id="tinyTextArea"></textarea>
+            <div>
+                <label for="title">Títol</label>
+                <input type="text" name="title" placeholder="Entra el títol">
+            </div>
+        <div class="form-group">    
+            <div class="mb-3">
+                <label for="status">Status</label>
+                <select
+                    class="form-select form-select-lg"
+                    name="status"
+                    id="status"
+                    required=""
+                >
+                    <option value="draft" selected>Esborrany</option>
+                    <option value="publish">Publicat</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="mb-3">
+             <label for="type">Tipus</label>
+            <select
+                class="form-select form-select-lg"
+                name="type"
+                id="type"
+                required=""
+            >
+                <option value="post" selected>Post</option>
+                <option value="page">Pàgina</option>
+
+            </select>
+        </div>
+                        
+                     </div>
+            {{-- Contingut --}}
+         <div class="form-group">
+            <textarea class="tinyMce" name="content" id="tinyTextArea"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</body>
-</html>
+</x-page>

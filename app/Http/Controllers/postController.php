@@ -52,7 +52,7 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
-        /* validació de camps */
+    
         $validated = $request->validate([
         'title' => 'required|max:255',
         'content' => 'required',
@@ -64,7 +64,7 @@ class postController extends Controller
         $post->type = $request->type;
         $post->status = $request->status;
         $post->save();
-        // return redirect()->route('posts.create')->with('status', $post->title);
+        return back()->with('status', $post->title);
     }
 
     /**
