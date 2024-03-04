@@ -6,7 +6,7 @@ import 'tinymce/icons/default/icons';
 import 'tinymce/themes/silver/theme';
 import 'tinymce/models/dom/model';
 
-/* No és la millor manera de carregar tots els plugins,  */
+/* No és la millor manera de carregar tots els plugins, però si no l'adreça és incorrecta */
 import 'tinymce/plugins/anchor';
 import 'tinymce/plugins/charmap';
 import 'tinymce/plugins/code';
@@ -30,12 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
         height: 400, // Alçada de l'editor
         
         // Estils
-        style_formats: [
-            { title: 'Encapçalament 1', format: 'h1' },
-            { title: 'Encapçalament 2', format: 'h2' },
-            { title: 'Encapçalament 3', format: 'h3' },
-            { title: 'Paràgraf', format: 'p' }
-        ],
+        
         // Plugins
         plugins: ["anchor", "charmap", "code", "codesample", "fullscreen", "link", "lists", "media",  "image", "preview", "table",  ],
        
@@ -43,6 +38,13 @@ window.addEventListener('DOMContentLoaded', () => {
        
         toolbar: "undo redo | fullscreen | anchor link image charmap  | blocks fontfamily fontsize | bold italic underline strikethrough | align | numlist bullist  | lineheight outdent indent| pagebreak ",
  
+        style_formats: [
+            { title: 'Encapçalament 1', format: 'h1' },
+            { title: 'Encapçalament 2', format: 'h2' },
+            { title: 'Encapçalament 3', format: 'h3' },
+            { title: 'Paràgraf', format: 'p' }
+        ],
+
         // Menú contextual
         contextmenu: 'link image table',
  
